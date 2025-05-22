@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reproducció Automàtica</title>
+</head>
+<body>
+  <audio id="so"
+         src="Audios/SHEEP1.mp3"
+         autoplay
+         muted
+         playsinline
+         controls></audio>
+
+  <script>
+    window.addEventListener('load', () => {
+      const so = document.getElementById('so');
+      so.play().catch(() => {
+        // Si no es pot fer autoplay, mostrem un botó
+        const btn = document.createElement('button');
+        btn.textContent = 'Reprodueix àudio';
+        btn.onclick = () => so.play();
+        document.body.appendChild(btn);
+      });
+      // Desmutem després d’un petit retard per forçar autoplay
+      setTimeout(() => { so.muted = false; }, 500);
+    });
+  </script>
+</body>
+</html>
